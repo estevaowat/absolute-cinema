@@ -3,8 +3,10 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/satori/go.uuid"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 )
 
@@ -13,10 +15,10 @@ type Status struct {
 }
 
 type Movie struct {
-	Id    string `json:"id"`
-	Title string `json:"title"`
-	Year  int    `json:"year"`
-	// Genres []string `json:"genres"`
+	Id     string   `json:"id"`
+	Title  string   `json:"title"`
+	Year   int      `json:"year"`
+	Genres []string `json:"genres"`
 }
 
 func GetMovies(length int) {
@@ -32,7 +34,6 @@ func GetMovies(length int) {
 
 	log.Println("decoding response body")
 
-	//TODO: change ioutil implementation
 	var movies []Movie
 
 	err := json.NewDecoder(response.Body).Decode(&movies)
@@ -47,4 +48,14 @@ func GetMovies(length int) {
 		fmt.Printf("printing movie %v \n", movie)
 	}
 
+}
+
+func createCsv(pathFolder string) {
+	fmt.Println("creating csv file")
+	path := pathFolder + "/" + uuid.NewV4().String() + ".csv"
+	os.Create(path)
+	fmt.Println("created csv file")
+	//do i need to check if pathFolder exists?
+
+	// create file inside the path folder using a random uuid
 }

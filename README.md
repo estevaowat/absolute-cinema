@@ -43,9 +43,9 @@ O script deve pensar em performance e tirar proveito de concorrência/paralelism
 ## Here is my todo list
 
 ### Feature 1: Generate a csv with movies
-- [ ] Connect to an API get movies infos
-- [ ] Parse movies to csv format (123,spiderman(2002),comedy|action|superhero)
-- [ ] Create csv file with a random name
+- [x] Connect to an API get movies infos
+- [x] Parse movies to csv format (123,spiderman(2002),comedy|action|superhero)
+- [x] Create csv file with a random name
 - [ ] Add movies to csv file
 - [ ] when finish adding movies, print filename created with movies
 
