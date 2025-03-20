@@ -1,8 +1,9 @@
 package cmd
 
 import (
-	"fmt"
+	"log"
 	"os"
+	"strconv"
 
 	"github.com/estevaowat/absolute-cinema/api"
 	"github.com/spf13/cobra"
@@ -11,16 +12,19 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "absci",
 	Short: "generate and save movies in database",
+	Args:  cobra.MatchAll(cobra.ExactArgs(1)),
 	Run: func(cmd *cobra.Command, args []string) {
-		println("printing using root cmd")
+		log.Println("printing using root cmd using args=", args)
+		length, err := strconv.Atoi(args[0])
+		if err != nil {
+			log.Println("could not parse args", err)
+		}
+		api.GetMovies(length)
 	},
 }
 
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		log.Fatal(os.Stderr, err)
 	}
-
-	api.GetMovies(100)
 }

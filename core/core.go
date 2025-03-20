@@ -20,12 +20,12 @@ func FormatMovie(movie Movie) string {
 		panic("movie has to be at least one genre")
 	}
 
-	var genres string = getGenres(movie.genres)
+	var genres string = GetGenres(movie.genres)
 
 	return fmt.Sprintf("%s(%d),%s", []any{movie.title, movie.year, genres}...)
 }
 
-func getGenres(genres []string) string {
+func GetGenres(genres []string) string {
 
 	var formatted = ""
 	for index, genre := range genres {

@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"testing"
@@ -14,7 +13,7 @@ func TestCreateCsvFile(t *testing.T) {
 	names := GetFilesNames(tmpDir)
 	RemoveAllFilesFromPath(tmpDir, names)
 
-	createCsv(tmpDir)
+	createCsv(tmpDir, "")
 
 	files := GetFilesNames(tmpDir)
 	assert.Equal(t, 1, len(files), "should be one file in this folder "+tmpDir)
@@ -26,13 +25,13 @@ func CreateTmpDir() string {
 	userHome, err := os.UserHomeDir()
 
 	if err != nil {
-		fmt.Println("could not find user home dir")
+		log.Println("could not find user home dir")
 	}
 
 	tmpDir, err := os.MkdirTemp(userHome, "tmp")
 
 	if err != nil {
-		fmt.Println("could not create dir temp", err)
+		log.Println("could not create dir temp", err)
 	}
 	return tmpDir
 }
