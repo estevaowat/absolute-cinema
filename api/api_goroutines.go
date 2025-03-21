@@ -21,7 +21,7 @@ func GetMoviesUsingGoRoutines(length int) {
 	response, error := http.Get(url)
 
 	if error != nil {
-		log.Println("error to get movies", error)
+		log.Fatal("error to get movies", error)
 	}
 
 	defer response.Body.Close()
@@ -29,13 +29,13 @@ func GetMoviesUsingGoRoutines(length int) {
 	var movies []Movie
 
 	if err := json.NewDecoder(response.Body).Decode(&movies); err != nil {
-		log.Println("error decoding response body", err)
+		log.Fatal("error decoding response body", err)
 	}
 
 	homeFolder, err := os.UserHomeDir()
 
 	if err != nil {
-		log.Println("error getting user home dir", err)
+		log.Fatal("error getting user home dir", err)
 	}
 
 	pathFolder := homeFolder + "/Desktop"

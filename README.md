@@ -48,7 +48,7 @@ O script deve pensar em performance e tirar proveito de concorrência/paralelism
 - [x] Create csv file with a random name
 - [x] Add movies to csv file
 - [x] when finish adding movies, print filename created with movies
-- [] study how to try catch http.Get
+- [x] study how to try catch http.Get
 - [x] measure time and write down Here
 
 1000 movies ~= 760ms <br/>
