@@ -94,11 +94,6 @@ func createCsv(pathFolder string, prefix string) *os.File {
 	log.Println("created csv file")
 
 	return file
-	//do i need to check if pathFolder exists?
-
-	// create file inside the path folder using a random uuid
-}
-
-func save(movies []Movie) {
+	//TODO:do i need to check if pathFolder exists?
 
 }

@@ -16,10 +16,12 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		log.Println("printing using root cmd using args=", args)
 		length, err := strconv.Atoi(args[0])
+
 		if err != nil {
 			log.Println("could not parse args", err)
 		}
-		api.GetMovies(length)
+
+		api.GetMoviesUsingGoRoutines(length)
 	},
 }
 

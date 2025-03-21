@@ -10,19 +10,20 @@ func GetMoviesFromAPI(movies []Movie) []Movie {
 }
 
 type Movie struct {
-	title  string
-	year   int
-	genres []string
+	Id     string
+	Title  string
+	Year   int
+	Genres []string
 }
 
-func FormatMovie(movie Movie) string {
-	if len(movie.genres) < 1 {
+func FormatMovie(movie *Movie) string {
+	if len(movie.Genres) < 1 {
 		panic("movie has to be at least one genre")
 	}
 
-	var genres string = GetGenres(movie.genres)
+	var genres string = GetGenres(movie.Genres)
 
-	return fmt.Sprintf("%s(%d),%s", []any{movie.title, movie.year, genres}...)
+	return fmt.Sprintf("%s,%s(%d),%s", []any{movie.Id, movie.Title, movie.Year, genres}...)
 }
 
 func GetGenres(genres []string) string {
