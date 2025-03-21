@@ -8,11 +8,11 @@ import (
 
 func TestSomething(t *testing.T) {
 	movie := Movie{
-		title:  "spiderman",
-		year:   2002,
-		genres: []string{"comedy", "action", "superhero"}}
+		Title:  "spiderman",
+		Year:   2002,
+		Genres: []string{"comedy", "action", "superhero"}}
 
-	result := FormatMovie(movie)
+	result := FormatMovie(&movie)
 
 	assert.Equal(t, "spiderman(2002),comedy|action|superhero", result, "they should be equal")
 }

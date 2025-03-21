@@ -51,16 +51,22 @@ O script deve pensar em performance e tirar proveito de concorrência/paralelism
 - [] study how to try catch http.Get
 - [x] measure time and write down Here
 
-1000 movies ~= 760ms
-10_000 movies ~= 1.67s
-100_000 movies ~= 15.63s
-1_000_000 movies ~= 4m35s
+1000 movies ~= 760ms <br/>
+10_000 movies ~= 1.67s  <br/>
+100_000 movies ~= 15.63s <br/>
+1_000_000 movies ~= 4m35s <br/>
+
 
 
 #### Feature 1.1 (Bonus): Generate a csv file with movies using go routines
 - [] add movies to csv file using go routines
 - [] measue time and write down here
 
+
+1000 movies ~= 35.383ms <br/>
+10_000 movies ~= 344.383s  <br/>
+100_000 movies ~= 5.42s <br/>
+1_000_000 movies ~= 37.517s <br/>
 
 ### Feature 2: Save csv with movies in a database (sequential)
 - [ ] Read all csv file
