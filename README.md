@@ -64,7 +64,7 @@ O script deve pensar em performance e tirar proveito de concorrência/paralelism
 
 
 1000 movies ~= 35.383ms <br/>
-10_000 movies ~= 344.383s  <br/>
+10_000 movies ~= 344.383ms  <br/>
 100_000 movies ~= 5.42s <br/>
 1_000_000 movies ~= 37.517s <br/>
 
