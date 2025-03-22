@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"log"
-	"os"
 	"strconv"
 
 	"github.com/estevaowat/absolute-cinema/api"
@@ -27,6 +26,5 @@ var rootCmd = &cobra.Command{
 
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
-		log.Fatal(os.Stderr, err)
 	}
 }

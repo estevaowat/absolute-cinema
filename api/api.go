@@ -33,7 +33,7 @@ func GetMovies(length int) {
 	response, error := http.Get(url)
 
 	if error != nil {
-		log.Println("error to get movies")
+		log.Fatal("error to get movies", error)
 	}
 
 	defer response.Body.Close()
@@ -94,6 +94,5 @@ func createCsv(pathFolder string, prefix string) *os.File {
 	log.Println("created csv file")
 
 	return file
-	//TODO:do i need to check if pathFolder exists?
 
 }

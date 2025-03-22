@@ -17,7 +17,7 @@ import (
 func GetMoviesUsingGoRoutines(length int) {
 	start := time.Now()
 
-	url := "http://localhost:8080/movie?length=" + strconv.Itoa(length)
+	url := "http://localhost:8080/movies?length=" + strconv.Itoa(length)
 	response, error := http.Get(url)
 
 	if error != nil {
