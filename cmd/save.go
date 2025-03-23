@@ -6,7 +6,7 @@ package cmd
 import (
 	"log"
 
-	"github.com/estevaowat/absolute-cinema/database"
+	"github.com/estevaowat/absolute-cinema/service"
 	"github.com/spf13/cobra"
 )
 
@@ -22,13 +22,11 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		log.Println("save called")
-
+		//TODO: pass a argument with the filename
 		log.Println("getting movies using standard library")
-		database.GetMoviesFromDatabase()
+		service.SaveInDatabaseSequentially("10-8a641aa6-4837-4f51-bc1e-7c5cbba47bca.csv")
 		log.Println("======================")
 
-		log.Println("getting movies using sqlx library")
-		database.GetMoviesFromDatabaseUsingSqlX()
 	},
 }
 
