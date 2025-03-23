@@ -59,8 +59,8 @@ O script deve pensar em performance e tirar proveito de concorrência/paralelism
 
 
 #### Feature 1.1 (Bonus): Generate a csv file with movies using go routines
-- [ ] add movies to csv file using go routines
-- [ ] measue time and write down here
+- [x] add movies to csv file using go routines
+- [x] measue time and write down here
 
 
 1000 movies ~= 35.383ms <br/>
@@ -71,12 +71,26 @@ O script deve pensar em performance e tirar proveito de concorrência/paralelism
 
 ### Prerequisites to Feature 2, 3 and 4
 - [x] learn how golang works with databases
+- [x] learn how to save in database one by one
+- [x] measure time to save one by one
+1_000_000 movies took more than 20min to save
+- [x] learn how to sabe in database using chunks
+1_000_000 movies took aprox. 25s
+
 
 ### Feature 2: Save csv with movies in a database (sequential)
-- [ ] Read all csv file
-- [ ] Loop all movies in the csv file
-- [ ] Save one by one in database
-- [ ] Measure time elapsed
+- [x] Read all csv file
+- [x] Loop all movies in the csv file
+- [x] Save one by one in database
+- [x] Measure time elapsed
+
+### Feature 2.1: Save csv with movies in a database using chunks
+- [x] read csv file
+- [x] loop through all mvoies in csv file
+- [x] save in chunks of 10_000 movies in database
+- [x] measure time elapsed
+
+1_000_000 movies took aprox. 25s
 
 
 ### Feature 3: Save csv with movies in database (goroutines, one by one)

@@ -24,7 +24,7 @@ to quickly create a Cobra application.`,
 		log.Println("save called")
 		//TODO: pass a argument with the filename
 		log.Println("getting movies using standard library")
-		service.SaveInDatabaseSequentially("10-8a641aa6-4837-4f51-bc1e-7c5cbba47bca.csv")
+		service.SaveInDatabaseSequentially("1000000-a52725a2-8061-4ce6-857d-01a6b79e998e.csv")
 		log.Println("======================")
 
 	},
