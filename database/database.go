@@ -9,50 +9,61 @@ import (
 	_ "github.com/lib/pq"
 )
 
-const (
-	host     = "localhost"
-	port     = 5432
-	user     = "myuser"
-	password = "mypassword"
-	dbname   = "absolute-cinema"
-)
+var DbSqlX *sqlx.DB
+var Db *sql.DB
 
-func GetDatabaseUsingDefaultLibrary() *sql.DB {
+func InitDB() {
+	log.Println("initializing database using standard library")
+	dbConfig := GetDbConfig()
+	connection := dbConfig.getConnectionString()
 
-	// TODO: add to environment variables
-	connectionString := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		host, port, user, password, dbname)
-
-	db, err := sql.Open("postgres", connectionString)
+	var err error
+	Db, err = sql.Open("postgres", connection)
 
 	if err != nil {
-		log.Fatalln("error connecting to database", connectionString, err)
+		log.Fatalln("error connecting to database", connection, err)
 	}
 
-	if error := db.Ping(); error != nil {
-		log.Fatalln("error pinging database", connectionString, error)
+	if error := Db.Ping(); error != nil {
+		log.Fatalln("error pinging database", connection, error)
 	}
 
 	log.Println("successfully connected to database")
 
-	return db
+}
+
+func InitDBSqlX() {
+	log.Println("initializing database using sqlx")
+	dbConfig := GetDbConfig()
+
+	var err error
+	DbSqlX, err = sqlx.Connect("postgres", dbConfig.getConnectionString())
+
+	if err != nil {
+		log.Fatalln("error connecting to database", dbConfig.getConnectionString(), err)
+	}
+
+	log.Println("successfully connected to database")
+}
+
+func GetDatabaseUsingDefaultLibrary() *sql.DB {
+	if Db != nil {
+		return Db
+	}
+
+	InitDB()
+
+	return Db
 }
 
 func GetDatabaseUsingSqlX() *sqlx.DB {
-	//TODO: Add database values to environment variables
-	connectionString := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		host, port, user, password, dbname)
-
-	db, err := sqlx.Connect("postgres", connectionString)
-
-	if err != nil {
-		log.Fatalln("error connecting to database", connectionString, err)
+	if DbSqlX != nil {
+		return DbSqlX
 	}
 
-	log.Println("successfully connected to database")
+	InitDBSqlX()
 
-	return db
-
+	return DbSqlX
 }
 
 type User struct {

@@ -17,7 +17,7 @@ import (
 func GetMoviesUsingGoRoutines(length int) {
 	start := time.Now()
 
-	url := "http://localhost:8080/movies?length=" + strconv.Itoa(length)
+	url := "http://localhost:8080/movie?length=" + strconv.Itoa(length)
 	response, error := http.Get(url)
 
 	if error != nil {
@@ -26,7 +26,8 @@ func GetMoviesUsingGoRoutines(length int) {
 
 	defer response.Body.Close()
 	log.Println("decoding response body")
-	var movies []Movie
+
+	var movies []core.Movie
 
 	if err := json.NewDecoder(response.Body).Decode(&movies); err != nil {
 		log.Fatal("error decoding response body", err)
@@ -66,11 +67,11 @@ func GetMoviesUsingGoRoutines(length int) {
 
 }
 
-func parseMovie(channel chan []string, movie *Movie, wg *sync.WaitGroup) {
+func parseMovie(channel chan []string, movie *core.Movie, wg *sync.WaitGroup) {
 	movieFormatted := make([]string, 3)
 	movieFormatted[0] = movie.Id
 	movieFormatted[1] = fmt.Sprintf("%s(%d)", movie.Title, movie.Year)
-	movieFormatted[2] = core.GetGenres(movie.Genres)
+	movieFormatted[2] = movie.GetGenres("|")
 
 	channel <- movieFormatted
 	wg.Done()

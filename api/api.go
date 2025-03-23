@@ -18,13 +18,6 @@ type Status struct {
 	Status string `json:"status"`
 }
 
-type Movie struct {
-	Id     string   `json:"id"`
-	Title  string   `json:"title"`
-	Year   int      `json:"year"`
-	Genres []string `json:"genres"`
-}
-
 func GetMovies(length int) {
 	start := time.Now()
 
@@ -40,7 +33,7 @@ func GetMovies(length int) {
 
 	log.Println("decoding response body")
 
-	var movies []Movie
+	var movies []core.Movie
 
 	err := json.NewDecoder(response.Body).Decode(&movies)
 
@@ -64,10 +57,9 @@ func GetMovies(length int) {
 	for _, movie := range movies {
 		columns := 3
 		formatted := make([]string, columns)
-
 		formatted[0] = movie.Id
 		formatted[1] = fmt.Sprintf("%s(%d)", movie.Title, movie.Year)
-		formatted[2] = core.GetGenres(movie.Genres)
+		formatted[2] = movie.GetGenres("|")
 
 		err := writer.Write(formatted)
 
